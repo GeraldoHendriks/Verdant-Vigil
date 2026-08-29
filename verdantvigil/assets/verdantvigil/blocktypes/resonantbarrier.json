@@ -1,0 +1,38 @@
+{
+    "code": "resonantbarrier",
+    "entityClass": "ResonantBarrier",
+    "shape": {
+        "base": "game:block/glass/framed"
+    },
+    "drawtype": "json",
+    "blockmaterial": "Glass",
+    "faceCullMode": "MergeMaterial",
+    "renderPass": "Transparent",
+    "textures": {
+        "material": {
+            "base": "game:block/glass/green"
+        }
+    },
+    "lightAbsorption": 0,
+    "lightHsv": [22, 7, 20],
+    "vertexFlags": {
+        "glowLevel": 160,
+        "zOffset": 2
+    },
+    "replaceable": 0,
+    "resistance": 99999,
+    "requiredMiningTier": 99,
+    "drops": [],
+    "sideopaque": {
+        "all": false
+    },
+    "sidesolid": {
+        "all": true
+    },
+    "creativeinventory": {},
+    "attributes": {
+        "handbook": {
+            "exclude": true
+        }
+    }
+}

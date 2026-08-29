@@ -1,0 +1,15 @@
+{
+    "$schema": "https://moddbcdn.vintagestory.at/schema/modinfo.latest.json",
+    "type": "Code",
+    "modid": "verdantvigil",
+    "name": "Verdant Vigil",
+    "authors": [
+        "Verdant Vigil Team"
+    ],
+    "description": "Harness verdant temporal resonance through will, crafted foci, and protective constructs.",
+    "version": "0.3.0",
+    "dependencies": {
+        "game": "1.22.3",
+        "survival": "1.22.3"
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "code": "vigilfocus",
+    "class": "ItemVigilFocus",
+    "maxstacksize": 1,
+    "storageFlags": 128,
+    "lightHsv": [22, 7, 18],
+    "behaviors": [
+        { "name": "Wearable" }
+    ],
+    "attributes": {
+        "clothescategory": "arm",
+        "wearableAttachment": true,
+        "warmth": 0
+    },
+    "shape": {
+        "base": "verdantvigil:entity/humanoid/seraph/clothing/arm/vigilbracer"
+    },
+    "textures": {
+        "brass": { "base": "game:block/metal/tarnished/brass" },
+        "crystal": { "base": "game:block/stone/gem/uranium" }
+    },
+    "creativeinventory": {
+        "general": ["*"],
+        "items": ["*"],
+        "clothing": ["*"]
+    },
+    "materialDensity": 2200,
+    "guiTransform": {
+        "translation": { "x": 3, "y": 2, "z": 0 },
+        "rotation": { "x": 150, "y": -38, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.1, "z": 0.5 },
+        "scale": 3.8
+    },
+    "tpHandTransform": {
+        "translation": { "x": -0.93, "y": -0.19, "z": -0.77 },
+        "rotation": { "x": -48, "y": -180, "z": 23 },
+        "origin": { "x": 0.5, "y": 0.12, "z": 0.5 },
+        "scale": 0.6
+    },
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+        "scale": 4.5
+    }
+}

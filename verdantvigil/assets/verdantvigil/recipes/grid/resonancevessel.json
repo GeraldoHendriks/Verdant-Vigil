@@ -1,0 +1,14 @@
+{
+    "ingredientPattern": "BBB,BCB,CCC",
+    "ingredients": {
+        "B": { "type": "item", "code": "game:ingot-brass" },
+        "C": { "type": "item", "code": "game:burnedbrick-fire" }
+    },
+    "width": 3,
+    "height": 3,
+    "output": {
+        "type": "block",
+        "code": "verdantvigil:resonancevessel",
+        "quantity": 1
+    }
+}

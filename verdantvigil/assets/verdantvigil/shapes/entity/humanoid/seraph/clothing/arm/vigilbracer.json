@@ -1,0 +1,47 @@
+{
+    "textureWidth": 16,
+    "textureHeight": 16,
+    "textures": {
+        "brass": "#brass",
+        "crystal": "#crystal"
+    },
+    "elements": [
+        {
+            "name": "bracer-root",
+            "stepParentName": "LowerArmL",
+            "from": [0, 0, 0],
+            "to": [0, 0, 0],
+            "faces": {},
+            "children": [
+                {
+                    "name": "bracer-left", "stepParentName": "LowerArmL",
+                    "from": [-0.2, 0.5, -0.2], "to": [2.7, 6.4, 2.2],
+                    "faces": {
+                        "north": { "texture": "#brass" }, "east": { "texture": "#brass" }, "south": { "texture": "#brass" }, "west": { "texture": "#brass" }, "up": { "texture": "#brass" }, "down": { "texture": "#brass" }
+                    }
+                },
+                {
+                    "name": "bracer-right", "stepParentName": "LowerArmR",
+                    "from": [-0.2, 0.5, -0.2], "to": [2.7, 6.4, 2.2],
+                    "faces": {
+                        "north": { "texture": "#brass" }, "east": { "texture": "#brass" }, "south": { "texture": "#brass" }, "west": { "texture": "#brass" }, "up": { "texture": "#brass" }, "down": { "texture": "#brass" }
+                    }
+                },
+                {
+                    "name": "shard-left", "stepParentName": "LowerArmL",
+                    "from": [0.55, 4.8, 1.9], "to": [1.95, 6.5, 3.3], "rotationOrigin": [1.25, 5.6, 2.6], "rotationY": 45,
+                    "faces": {
+                        "north": { "texture": "#crystal", "glow": 80 }, "east": { "texture": "#crystal", "glow": 80 }, "south": { "texture": "#crystal", "glow": 80 }, "west": { "texture": "#crystal", "glow": 80 }, "up": { "texture": "#crystal", "glow": 100 }, "down": { "texture": "#crystal", "glow": 60 }
+                    }
+                },
+                {
+                    "name": "shard-right", "stepParentName": "LowerArmR",
+                    "from": [0.55, 4.8, 1.9], "to": [1.95, 6.5, 3.3], "rotationOrigin": [1.25, 5.6, 2.6], "rotationY": 45,
+                    "faces": {
+                        "north": { "texture": "#crystal", "glow": 80 }, "east": { "texture": "#crystal", "glow": 80 }, "south": { "texture": "#crystal", "glow": 80 }, "west": { "texture": "#crystal", "glow": 80 }, "up": { "texture": "#crystal", "glow": 100 }, "down": { "texture": "#crystal", "glow": 60 }
+                    }
+                }
+            ]
+        }
+    ]
+}

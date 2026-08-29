@@ -1,0 +1,74 @@
+[
+    {
+        "op": "add",
+        "file": "game:entities/humanoid/player.json",
+        "path": "/client/animations/-",
+        "value": {
+            "code": "bracerflight-hover",
+            "animation": "bracerflight-hover",
+            "blendMode": "Average",
+            "easeInSpeed": 10,
+            "easeOutSpeed": 10
+        }
+    },
+    {
+        "op": "add",
+        "file": "game:entities/humanoid/player.json",
+        "path": "/client/animations/-",
+        "value": {
+            "code": "bracerflight-hover-fp",
+            "animation": "bracerflight-hover",
+            "blendMode": "Average",
+            "easeInSpeed": 10,
+            "easeOutSpeed": 10
+        }
+    },
+    {
+        "op": "add",
+        "file": "game:entities/humanoid/player.json",
+        "path": "/client/animations/-",
+        "value": {
+            "code": "bracerflight-cruise",
+            "animation": "bracerflight-cruise",
+            "blendMode": "Average",
+            "easeInSpeed": 10,
+            "easeOutSpeed": 10
+        }
+    },
+    {
+        "op": "add",
+        "file": "game:entities/humanoid/player.json",
+        "path": "/client/animations/-",
+        "value": {
+            "code": "bracerflight-cruise-fp",
+            "animation": "bracerflight-cruise",
+            "blendMode": "Average",
+            "easeInSpeed": 10,
+            "easeOutSpeed": 10
+        }
+    },
+    {
+        "op": "add",
+        "file": "game:entities/humanoid/player.json",
+        "path": "/client/animations/-",
+        "value": {
+            "code": "bracerflight-sprint",
+            "animation": "bracerflight-sprint",
+            "blendMode": "Average",
+            "easeInSpeed": 12,
+            "easeOutSpeed": 12
+        }
+    },
+    {
+        "op": "add",
+        "file": "game:entities/humanoid/player.json",
+        "path": "/client/animations/-",
+        "value": {
+            "code": "bracerflight-sprint-fp",
+            "animation": "bracerflight-sprint",
+            "blendMode": "Average",
+            "easeInSpeed": 12,
+            "easeOutSpeed": 12
+        }
+    }
+]

@@ -1,0 +1,41 @@
+{
+    "textureWidth": 16,
+    "textureHeight": 16,
+    "textures": {
+        "ceramic": "#ceramic",
+        "brass": "#brass",
+        "crystal": "#crystal"
+    },
+    "elements": [
+        {
+            "name": "ceramic-base", "from": [2, 0, 2], "to": [14, 3, 14],
+            "faces": {
+                "north": { "texture": "#ceramic" }, "east": { "texture": "#ceramic" }, "south": { "texture": "#ceramic" }, "west": { "texture": "#ceramic" }, "up": { "texture": "#ceramic" }, "down": { "texture": "#ceramic" }
+            }
+        },
+        {
+            "name": "brass-plinth", "from": [4, 3, 4], "to": [12, 5, 12],
+            "faces": {
+                "north": { "texture": "#brass" }, "east": { "texture": "#brass" }, "south": { "texture": "#brass" }, "west": { "texture": "#brass" }, "up": { "texture": "#brass" }, "down": { "texture": "#brass" }
+            }
+        },
+        {
+            "name": "ceramic-column", "from": [6, 5, 6], "to": [10, 10, 10],
+            "faces": {
+                "north": { "texture": "#ceramic" }, "east": { "texture": "#ceramic" }, "south": { "texture": "#ceramic" }, "west": { "texture": "#ceramic" }, "up": { "texture": "#ceramic" }, "down": { "texture": "#ceramic" }
+            }
+        },
+        {
+            "name": "brass-crown", "from": [4, 10, 4], "to": [12, 11, 12],
+            "faces": {
+                "north": { "texture": "#brass" }, "east": { "texture": "#brass" }, "south": { "texture": "#brass" }, "west": { "texture": "#brass" }, "up": { "texture": "#brass" }, "down": { "texture": "#brass" }
+            }
+        },
+        {
+            "name": "suspended-shard", "from": [6, 11, 6], "to": [10, 15, 10], "rotationOrigin": [8, 13, 8], "rotationY": 45,
+            "faces": {
+                "north": { "texture": "#crystal", "glow": 80 }, "east": { "texture": "#crystal", "glow": 80 }, "south": { "texture": "#crystal", "glow": 80 }, "west": { "texture": "#crystal", "glow": 80 }, "up": { "texture": "#crystal", "glow": 100 }, "down": { "texture": "#crystal", "glow": 50 }
+            }
+        }
+    ]
+}

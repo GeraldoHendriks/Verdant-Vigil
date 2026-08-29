@@ -1,0 +1,32 @@
+{
+    "code": "resonancevessel",
+    "class": "BlockResonanceVessel",
+    "entityClass": "ResonanceVessel",
+    "drawtype": "json",
+    "shape": {
+        "base": "verdantvigil:block/resonancevessel"
+    },
+    "textures": {
+        "ceramic": { "base": "game:block/clay/pot/black" },
+        "brass": { "base": "game:block/metal/tarnished/brass" },
+        "crystal": { "base": "game:block/stone/gem/uranium" }
+    },
+    "blockmaterial": "Ceramic",
+    "resistance": 2,
+    "lightAbsorption": 0,
+    "lightHsv": [22, 7, 16],
+    "sideopaque": { "all": false },
+    "sidesolid": { "all": false },
+    "selectionbox": {
+        "x1": 0.125, "y1": 0, "z1": 0.125,
+        "x2": 0.875, "y2": 0.875, "z2": 0.875
+    },
+    "collisionbox": {
+        "x1": 0.125, "y1": 0, "z1": 0.125,
+        "x2": 0.875, "y2": 0.875, "z2": 0.875
+    },
+    "creativeinventory": {
+        "general": ["*"],
+        "decorative": ["*"]
+    }
+}
