@@ -6,8 +6,7 @@ namespace VerdantVigil;
 
 public sealed class ItemVigilFocus : Item
 {
-    public const int MaxCharge = 100;
-    private const int LegacyMaxCharge = 5;
+    public const int MaxCharge = BracerRules.MaxCharge;
 
     internal const string ChargeKey = "verdantvigil:charge";
     private const string ChargeFormatKey = "verdantvigil:chargeformat";
@@ -28,10 +27,8 @@ public sealed class ItemVigilFocus : Item
 
     internal static int GetCharge(ItemStack stack)
     {
-        int charge = stack.Attributes.GetInt(ChargeKey, LegacyMaxCharge);
-        return stack.Attributes.GetInt(ChargeFormatKey, 0) == 1
-            ? Math.Clamp(charge, 0, MaxCharge)
-            : Math.Clamp(charge, 0, LegacyMaxCharge) * 20;
+        int charge = stack.Attributes.GetInt(ChargeKey, BracerRules.LegacyMaxCharge);
+        return BracerRules.NormalizeCharge(charge, stack.Attributes.GetInt(ChargeFormatKey, 0) == 1);
     }
 
     internal static void SetCharge(ItemStack stack, int charge)
