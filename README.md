@@ -46,7 +46,7 @@ for a client, a server, and the package task.
 1. Launch the StoryForge **Test modpack** installation with creative mode.
 2. Search the creative inventory for **Vigil Bracers**, then right-click them to equip the Arm slot.
 3. Search for and place a **Resonance Vessel** nearby.
-4. Right-click the vessel to restore all five bracer charges.
+4. Right-click the vessel to restore all bracer resonance.
 5. Change to survival mode, then press `R` to toggle flight. Jump ascends and sneak descends.
 6. Hover to use the asymmetric bracer pose, move forward to cruise, and hold sprint while moving forward to accelerate into the straight-flight pose.
 7. Confirm one resonance charge drains every minute and flight ends at zero charge.
@@ -68,3 +68,16 @@ Do not add third-party character names, organizations, symbols, dialogue,
 costumes, artwork, or other protected material. New mechanics should use the
 Verdant Vigil vocabulary and fit Vintage Story's temporal and metallurgical
 setting.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development, testing, asset, and
+pull-request guidance.
+
+Automation contributors must also follow [AGENTS.md](AGENTS.md), which adds
+automation-specific restrictions to the human-first workflow.
+
+## License
+
+Verdant Vigil is available under the [MIT License](LICENSE). Copyright (c)
+2026 Geraldo Hendriks.
