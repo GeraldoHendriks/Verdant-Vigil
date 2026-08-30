@@ -51,6 +51,15 @@ for a client, a server, and the package task.
 6. Hover to use the asymmetric bracer pose, move forward to cruise, and hold sprint while moving forward to accelerate into the straight-flight pose.
 7. Confirm one resonance charge drains every minute and flight ends at zero charge.
 
+### Bracer Controls
+
+- `R`: Toggle Vigil Flight
+- `J`: Air Dash
+- `K`: Windward Step
+- `V`: Verdant Sense
+- `B`: Vessel Recall
+- Hold Jump while falling: Controlled Descent
+
 The vessel is craftable with brass ingots and fire bricks;
 the bracers remain creative-only during prototyping. Flight is limited to
 survival mode so creative and spectator movement state is never modified.

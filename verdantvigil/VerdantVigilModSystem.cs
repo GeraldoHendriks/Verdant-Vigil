@@ -72,8 +72,8 @@ public sealed class VerdantVigilModSystem : ModSystem
             GlKeys.R,
             HotkeyType.CharacterControls);
         api.Input.SetHotKeyHandler("verdantvigil-flight", ToggleFlight);
-        RegisterAbilityHotKey(api, "verdantvigil-dash", "verdantvigil:hotkey-dash", GlKeys.G, BracerAbility.Dash);
-        RegisterAbilityHotKey(api, "verdantvigil-step", "verdantvigil:hotkey-step", GlKeys.H, BracerAbility.Step);
+        RegisterAbilityHotKey(api, "verdantvigil-dash", "verdantvigil:hotkey-dash", GlKeys.J, BracerAbility.Dash);
+        RegisterAbilityHotKey(api, "verdantvigil-step", "verdantvigil:hotkey-step", GlKeys.K, BracerAbility.Step);
         RegisterAbilityHotKey(api, "verdantvigil-sense", "verdantvigil:hotkey-sense", GlKeys.V, BracerAbility.Sense);
         RegisterAbilityHotKey(api, "verdantvigil-recall", "verdantvigil:hotkey-recall", GlKeys.B, BracerAbility.Recall);
         clientFlightTickListener = api.Event.RegisterGameTickListener(_ => UpdateClientFlightSpeed(), 20);
