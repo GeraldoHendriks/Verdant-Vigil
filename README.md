@@ -44,12 +44,19 @@ for a client, a server, and the package task.
 ## Prototype Testing
 
 1. Launch the StoryForge **Test modpack** installation with creative mode.
-2. Search the creative inventory for **Vigil Bracers**, then right-click them to equip the Arm slot.
+2. Search the creative inventory for a **Vigil Ring** and place it in the active hotbar slot.
 3. Search for and place a **Resonance Vessel** nearby.
 4. Right-click the vessel to restore all bracer resonance.
-5. Change to survival mode, then press `R` to toggle flight. Jump ascends and sneak descends.
+5. Change to survival mode, select Vigil Flight with the Tool Mode menu, then right-click the ring to toggle flight. Jump ascends and sneak descends.
 6. Hover to use the asymmetric bracer pose, move forward to cruise, and hold sprint while moving forward to accelerate into the straight-flight pose.
 7. Confirm one resonance charge drains every minute and flight ends at zero charge.
+
+### Ring Controls
+
+- Use the game's Tool Mode binding while holding the ring to select a form.
+- Right-click the ring to activate the selected form.
+- Hold Jump while falling: Controlled Descent.
+- Landing Cushion and Emergency Ward only work while the ring is selected in the active hand.
 
 The vessel is craftable with brass ingots and fire bricks;
 the bracers remain creative-only during prototyping. Flight is limited to

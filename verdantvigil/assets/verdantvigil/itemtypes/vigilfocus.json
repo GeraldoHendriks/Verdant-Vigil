@@ -2,45 +2,41 @@
     "code": "vigilfocus",
     "class": "ItemVigilFocus",
     "maxstacksize": 1,
-    "storageFlags": 128,
+    "storageFlags": 5,
     "lightHsv": [22, 7, 18],
-    "behaviors": [
-        { "name": "Wearable" }
-    ],
     "attributes": {
-        "clothescategory": "arm",
-        "wearableAttachment": true,
-        "warmth": 0
+        "heldItemPitchFollow": 0.5,
+        "rememberToolModeWhenBroken": true
     },
     "shape": {
-        "base": "verdantvigil:entity/humanoid/seraph/clothing/arm/vigilbracer"
+        "base": "survival:item/tool/shield/round"
     },
     "textures": {
-        "brass": { "base": "game:block/metal/tarnished/brass" },
-        "crystal": { "base": "game:block/stone/gem/uranium" }
+        "oak": { "base": "game:block/metal/tarnished/brass" },
+        "oak-h": { "base": "game:block/metal/tarnished/brass" }
     },
     "creativeinventory": {
         "general": ["*"],
         "items": ["*"],
-        "clothing": ["*"]
+        "tools": ["*"]
     },
     "materialDensity": 2200,
     "guiTransform": {
-        "translation": { "x": 3, "y": 2, "z": 0 },
-        "rotation": { "x": 150, "y": -38, "z": 0 },
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
         "origin": { "x": 0.5, "y": 0.1, "z": 0.5 },
-        "scale": 3.8
+        "scale": 0.25
     },
     "tpHandTransform": {
-        "translation": { "x": -0.93, "y": -0.19, "z": -0.77 },
-        "rotation": { "x": -48, "y": -180, "z": 23 },
+        "translation": { "x": -0.35, "y": -0.1, "z": -0.3 },
+        "rotation": { "x": 0, "y": 0, "z": 0 },
         "origin": { "x": 0.5, "y": 0.12, "z": 0.5 },
-        "scale": 0.6
+        "scale": 0.15
     },
     "groundTransform": {
         "translation": { "x": 0, "y": 0, "z": 0 },
         "rotation": { "x": 0, "y": 0, "z": 0 },
         "origin": { "x": 0.5, "y": 0, "z": 0.5 },
-        "scale": 4.5
+        "scale": 0.3
     }
 }

@@ -54,8 +54,7 @@ public sealed class VerdantVigilModSystem : ModSystem
 
         api.Network.RegisterChannel(FlightChannelName)
             .RegisterMessageType<FlightRequestPacket>()
-            .RegisterMessageType<FlightStatePacket>()
-            .RegisterMessageType<BracerAbilityPacket>();
+            .RegisterMessageType<FlightStatePacket>();
 
         Mod.Logger.Notification("Verdant Vigil 0.3.0 initialized on {0}.", api.Side);
     }
@@ -66,16 +65,6 @@ public sealed class VerdantVigilModSystem : ModSystem
         clientFlightChannel = api.Network.GetChannel(FlightChannelName)
             .SetMessageHandler<FlightStatePacket>(OnFlightStateReceived);
 
-        api.Input.RegisterHotKey(
-            "verdantvigil-flight",
-            Lang.Get("verdantvigil:hotkey-flight"),
-            GlKeys.R,
-            HotkeyType.CharacterControls);
-        api.Input.SetHotKeyHandler("verdantvigil-flight", ToggleFlight);
-        RegisterAbilityHotKey(api, "verdantvigil-dash", "verdantvigil:hotkey-dash", GlKeys.G, BracerAbility.Dash);
-        RegisterAbilityHotKey(api, "verdantvigil-step", "verdantvigil:hotkey-step", GlKeys.H, BracerAbility.Step);
-        RegisterAbilityHotKey(api, "verdantvigil-sense", "verdantvigil:hotkey-sense", GlKeys.V, BracerAbility.Sense);
-        RegisterAbilityHotKey(api, "verdantvigil-recall", "verdantvigil:hotkey-recall", GlKeys.B, BracerAbility.Recall);
         clientFlightTickListener = api.Event.RegisterGameTickListener(_ => UpdateClientFlightSpeed(), 20);
 
     }
@@ -85,7 +74,6 @@ public sealed class VerdantVigilModSystem : ModSystem
         sapi = api;
         serverFlightChannel = api.Network.GetChannel(FlightChannelName)
             .SetMessageHandler<FlightRequestPacket>(OnFlightRequested);
-        serverFlightChannel.SetMessageHandler<BracerAbilityPacket>(OnAbilityRequested);
         serverFlightTickListener = api.Event.RegisterGameTickListener(OnServerFlightTick, 100);
         api.Event.PlayerDeath += (player, damageSource) => RevokeFlight(player, "verdantvigil:flight-revoked");
         api.Event.PlayerDisconnect += player => RevokeFlight(player, null);
@@ -108,21 +96,6 @@ public sealed class VerdantVigilModSystem : ModSystem
 
         activeFlights.Clear();
         base.Dispose();
-    }
-
-    private bool ToggleFlight(KeyCombination keyCombination)
-    {
-        if (clientFlightChannel?.Connected != true)
-        {
-            return false;
-        }
-
-        clientFlightChannel.SendPacket(new FlightRequestPacket
-        {
-            Desired = !clientFlightEnabled,
-            Sequence = ++nextFlightRequestSequence
-        });
-        return true;
     }
 
     private void OnFlightStateReceived(FlightStatePacket packet)
@@ -251,7 +224,7 @@ public sealed class VerdantVigilModSystem : ModSystem
             FlightState state = activeFlights[playerUid];
             if (now - state.LastChargeDrainMs >= FlightChargeIntervalMilliseconds)
             {
-                ItemSlot slot = GetEquippedBracerSlot(player)!;
+                ItemSlot slot = GetActiveRingSlot(player)!;
                 ItemStack stack = slot.Itemstack!;
                 int charge = ItemVigilFocus.GetCharge(stack) - FlightChargeCost;
                 ItemVigilFocus.SetCharge(stack, charge);
@@ -284,7 +257,7 @@ public sealed class VerdantVigilModSystem : ModSystem
             return false;
         }
 
-        ItemStack? stack = GetEquippedBracerSlot(player)?.Itemstack;
+        ItemStack? stack = GetActiveRingSlot(player)?.Itemstack;
         if (stack?.Collectible is not ItemVigilFocus)
         {
             reason = "verdantvigil:flight-focus-required";
@@ -300,11 +273,7 @@ public sealed class VerdantVigilModSystem : ModSystem
         return true;
     }
 
-    private static ItemSlot? GetEquippedBracerSlot(IPlayer player)
-    {
-        IInventory? characterInventory = player.InventoryManager.GetOwnInventory(GlobalConstants.characterInvClassName);
-        return characterInventory?[(int)EnumCharacterDressType.Arm];
-    }
+    private static ItemSlot? GetActiveRingSlot(IPlayer player) => player.InventoryManager.ActiveHotbarSlot;
 
     private static void ApplyFlightControls(IServerPlayer player, FlightState state)
     {
@@ -358,26 +327,14 @@ public sealed class VerdantVigilModSystem : ModSystem
         }, player);
     }
 
-    private void RegisterAbilityHotKey(ICoreClientAPI api, string code, string langCode, GlKeys key, BracerAbility ability)
-    {
-        api.Input.RegisterHotKey(code, Lang.Get(langCode), key, HotkeyType.CharacterControls);
-        api.Input.SetHotKeyHandler(code, _ =>
-        {
-            if (clientFlightChannel?.Connected != true)
-            {
-                return false;
-            }
-
-            clientFlightChannel.SendPacket(new BracerAbilityPacket { Ability = (int)ability });
-            return true;
-        });
-    }
-
-    private void OnAbilityRequested(IServerPlayer player, BracerAbilityPacket packet)
+    internal void UseSelectedMode(IServerPlayer player, int mode)
     {
         long now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-        switch ((BracerAbility)packet.Ability)
+        switch ((BracerAbility)mode)
         {
+            case BracerAbility.Flight:
+                OnFlightRequested(player, new FlightRequestPacket { Desired = !activeFlights.ContainsKey(player.PlayerUID) });
+                break;
             case BracerAbility.Dash:
                 TryDash(player, now);
                 break;
@@ -396,7 +353,7 @@ public sealed class VerdantVigilModSystem : ModSystem
     private void ApplyPassiveAbilities(IServerPlayer player, long now)
     {
         if (player.Entity == null || player.WorldData.CurrentGameMode != EnumGameMode.Survival ||
-            GetEquippedBracerSlot(player)?.Itemstack is not ItemStack stack)
+            GetActiveRingSlot(player)?.Itemstack is not ItemStack stack)
         {
             return;
         }
@@ -463,7 +420,7 @@ public sealed class VerdantVigilModSystem : ModSystem
             Notify(player, "recall-no-vessel");
             return;
         }
-        ItemSlot slot = GetEquippedBracerSlot(player)!;
+        ItemSlot slot = GetActiveRingSlot(player)!;
         ItemVigilFocus.SetCharge(slot.Itemstack!, ItemVigilFocus.GetCharge(slot.Itemstack!) + RecallChargeAmount);
         slot.MarkDirty();
         state.LastRecallMs = now;
@@ -484,11 +441,11 @@ public sealed class VerdantVigilModSystem : ModSystem
 
     private static bool CanUseAbility(IServerPlayer player, long now, long lastUsed, int cooldown) =>
         player.Entity != null && player.Entity.Alive && player.WorldData.CurrentGameMode == EnumGameMode.Survival &&
-        now - lastUsed >= cooldown && GetEquippedBracerSlot(player)?.Itemstack?.Collectible is ItemVigilFocus;
+        now - lastUsed >= cooldown && GetActiveRingSlot(player)?.Itemstack?.Collectible is ItemVigilFocus;
 
     private static bool TrySpendCharge(IServerPlayer player, int amount)
     {
-        ItemSlot? slot = GetEquippedBracerSlot(player);
+        ItemSlot? slot = GetActiveRingSlot(player);
         if (slot?.Itemstack is not ItemStack stack || stack.Collectible is not ItemVigilFocus || ItemVigilFocus.GetCharge(stack) < amount) return false;
         ItemVigilFocus.SetCharge(stack, ItemVigilFocus.GetCharge(stack) - amount);
         slot.MarkDirty();
@@ -497,7 +454,7 @@ public sealed class VerdantVigilModSystem : ModSystem
 
     internal static void TryAbsorbSevereDamage(IServerPlayer player, ref float damage)
     {
-        if (damage < 8 || GetEquippedBracerSlot(player)?.Itemstack is not ItemStack stack || ItemVigilFocus.GetCharge(stack) < WardChargeCost) return;
+        if (damage < 8 || GetActiveRingSlot(player)?.Itemstack is not ItemStack stack || ItemVigilFocus.GetCharge(stack) < WardChargeCost) return;
         var system = player.Entity.Api.ModLoader.GetModSystem<VerdantVigilModSystem>();
         AbilityState state = system.GetAbilityState(player);
         long now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
@@ -601,14 +558,9 @@ public sealed class FlightStatePacket
 }
 
 [ProtoContract]
-public sealed class BracerAbilityPacket
-{
-    [ProtoMember(1)]
-    public int Ability { get; set; }
-}
-
 public enum BracerAbility
 {
+    Flight,
     Dash,
     Step,
     Sense,
